@@ -1,0 +1,13 @@
+streamlit
+yfinance
+ccxt
+pandas
+numpy
+tensorflow
+scikit-learn
+plotly
+textblob
+nltk
+python-dotenv
+requests
+typing-extensions
