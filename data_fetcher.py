@@ -5,7 +5,6 @@ import datetime
 import logging
 from typing import Union, Optional
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
