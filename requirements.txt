@@ -10,4 +10,3 @@ textblob
 nltk
 python-dotenv
 requests
-typing-extensions
