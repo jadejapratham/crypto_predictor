@@ -10,17 +10,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def get_stock_data(ticker: str, period: str = "1y", interval: str = "1d") -> Optional[pd.DataFrame]:
-    """
-    Fetch historical stock data from Yahoo Finance
-    
-    Args:
-        ticker (str): Stock ticker symbol (e.g., "AAPL")
-        period (str): Time period to fetch (default "1y")
-        interval (str): Data interval (default "1d")
-        
-    Returns:
-        pd.DataFrame: DataFrame with stock data or None on error
-    """
+   
     if not ticker or not isinstance(ticker, str):
         logger.error("Invalid ticker parameter")
         return None
@@ -40,16 +30,7 @@ def get_stock_data(ticker: str, period: str = "1y", interval: str = "1d") -> Opt
         return None
 
 def get_crypto_data(symbol: str = "BTC/USDT", days: int = 365) -> Optional[pd.DataFrame]:
-    """
-    Fetch historical cryptocurrency data from Binance
     
-    Args:
-        symbol (str): Crypto pair symbol (e.g., "BTC/USDT")
-        days (int): Number of days of data to fetch
-        
-    Returns:
-        pd.DataFrame: DataFrame with crypto data or None on error
-    """
     if not symbol or not isinstance(symbol, str):
         logger.error("Invalid symbol parameter")
         return None
