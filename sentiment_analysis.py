@@ -1,3 +1,4 @@
+import streamlit as st
 import requests
 import os
 from textblob import TextBlob
@@ -8,19 +9,21 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-load_dotenv()
-NEWS_API_KEY = os.getenv("NEWS_API_KEY")
+
 
 def fetch_news(query="Bitcoin"):
-    """
-    Fetch news articles for a given query using NewsAPI
+
+    api_key = st.secrets["NEWS_API_KEY"]
+    url = f"https://newsapi.org/v2/everything?q={query}&sortBy=publishedAt&apiKey={api_key}"
+    response = requests.get(url)
     
-    Args:
-        query (str): Search query for news articles
-        
-    Returns:
-        list: List of article dictionaries or empty list on error
-    """
+    if response.status_code != 200:
+        st.error(f"API error: {response.status_code} - {response.text}")
+        return []
+    
+    articles = response.json().get("articles", [])
+    return articles
+   
     if not query or not isinstance(query, str):
         logger.error("Invalid query parameter")
         return []
