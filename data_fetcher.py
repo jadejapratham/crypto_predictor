@@ -2,21 +2,11 @@ import requests
 import pandas as pd
 import logging
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def get_crypto_data(symbol: str = "bitcoin", days: int = 365) -> pd.DataFrame:
-    """
-    Fetch historical cryptocurrency price data from CoinGecko.
 
-    Args:
-        symbol (str): CoinGecko coin ID (e.g., 'bitcoin')
-        days (int): Number of days of historical data to fetch
-
-    Returns:
-        pd.DataFrame: DataFrame with 'date' and 'price' columns
-    """
     try:
         url = f"https://api.coingecko.com/api/v3/coins/{symbol}/market_chart"
         params = {
