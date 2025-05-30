@@ -3,22 +3,13 @@ from textblob import TextBlob
 import streamlit as st
 import logging
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 NEWS_API_KEY = st.secrets["NEWS_API_KEY"]
 
 def fetch_news(query="Bitcoin"):
-    """
-    Fetch news articles for a given query using NewsAPI
-    
-    Args:
-        query (str): Search query for news articles
-        
-    Returns:
-        list: List of article dictionaries or empty list on error
-    """
+   
     if not query or not isinstance(query, str):
         logger.error("Invalid query parameter")
         return []
@@ -46,15 +37,7 @@ def fetch_news(query="Bitcoin"):
         return []
 
 def analyze_sentiment(text):
-    """
-    Analyze sentiment of given text using TextBlob
     
-    Args:
-        text (str): Text to analyze
-        
-    Returns:
-        float: Sentiment polarity between -1 (negative) and 1 (positive)
-    """
     if not text or not isinstance(text, str):
         return 0.0
         
