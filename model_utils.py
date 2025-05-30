@@ -12,19 +12,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def prepare_data(data: pd.DataFrame, window_size: int = 60) -> Tuple[np.ndarray, np.ndarray, MinMaxScaler]:
-    """
-    Prepare data for LSTM model training
     
-    Args:
-        data (pd.DataFrame): DataFrame with 'close' prices
-        window_size (int): Number of previous days to use for prediction
-        
-    Returns:
-        tuple: (x_train, y_train, scaler)
-        
-    Raises:
-        ValueError: If input data is invalid or insufficient
-    """
     if data is None or not isinstance(data, pd.DataFrame):
         raise ValueError("Input must be a pandas DataFrame")
         
@@ -59,15 +47,7 @@ def prepare_data(data: pd.DataFrame, window_size: int = 60) -> Tuple[np.ndarray,
         raise
 
 def build_model(input_shape: tuple) -> Sequential:
-    """
-    Build and compile LSTM model
     
-    Args:
-        input_shape (tuple): Shape of input data (timesteps, features)
-        
-    Returns:
-        Sequential: Compiled Keras model
-    """
     try:
         model = Sequential([
             LSTM(units=64, return_sequences=True, input_shape=input_shape),
