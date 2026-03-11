@@ -11,7 +11,7 @@ st.title("📈 Crypto Price Predictor with Sentiment Analysis")
 
 st.sidebar.header("🔧 Settings")
 ticker = st.sidebar.text_input("Crypto ID (e.g., bitcoin, ethereum)", "bitcoin")
-days = st.sidebar.slider("Days of historical data", min_value=30, max_value=365, value=180)
+days = st.sidebar.slider("Days of historical data", min_value=60, max_value=365, value=180)
 prediction_days = st.sidebar.slider("Days to predict ahead", min_value=1, max_value=7, value=3)
 
 if st.sidebar.button("Run Forecast"):
