@@ -1,3 +1,4 @@
+import os
 import requests
 import pandas as pd
 import logging
@@ -6,7 +7,6 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def get_crypto_data(symbol: str = "bitcoin", days: int = 365) -> pd.DataFrame:
-
     try:
         url = f"https://api.coingecko.com/api/v3/coins/{symbol}/market_chart"
         params = {
@@ -14,8 +14,16 @@ def get_crypto_data(symbol: str = "bitcoin", days: int = 365) -> pd.DataFrame:
             "days": days,
             "interval": "daily"
         }
+        
+        api_key = os.environ.get("COINGECKO_API_KEY")
+        
+        headers = {
+            "accept": "application/json",
+            "x-cg-demo-api-key": api_key 
+        }
+        
         logger.info(f"Fetching crypto data for {symbol} from CoinGecko")
-        response = requests.get(url, params=params)
+        response = requests.get(url, params=params, headers=headers)
         response.raise_for_status()
 
         prices = response.json().get("prices", [])
