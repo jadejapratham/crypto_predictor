@@ -11,6 +11,7 @@ st.title("📈 Crypto Price Predictor with Sentiment Analysis")
 
 st.sidebar.header("🔧 Settings")
 ticker = st.sidebar.text_input("Crypto ID (e.g., bitcoin, ethereum)", "bitcoin")
+
 days = st.sidebar.slider("Days of historical data", min_value=60, max_value=365, value=180)
 prediction_days = st.sidebar.slider("Days to predict ahead", min_value=1, max_value=7, value=3)
 
@@ -58,8 +59,16 @@ if st.sidebar.button("Run Forecast"):
             st.warning("⚠️ No news articles found or failed to fetch news.")
         else:
             for article in news[:3]:
-                st.markdown(f"**{article['title']}**")
-                st.write(article['description'])
-                sentiment = analyze_sentiment(article['title'] + " " + article['description'])
+                title = article.get('title') or ""
+                description = article.get('description') or ""
+                
+                if title:
+                    st.markdown(f"**{title}**")
+                if description:
+                    st.write(description)
+
+                combined_text = f"{title} {description}".strip()
+                sentiment = analyze_sentiment(combined_text)
+                
                 st.write(f"🧠 Sentiment Score: `{sentiment:.2f}`")
                 st.markdown("---")
