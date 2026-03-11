@@ -1,12 +1,12 @@
+import os
 import requests
 from textblob import TextBlob
-import streamlit as st
 import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-NEWS_API_KEY = st.secrets["NEWS_API_KEY"]
+NEWS_API_KEY = os.environ.get("NEWS_API_KEY")
 
 def fetch_news(query="Bitcoin"):
    
