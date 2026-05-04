@@ -1,20 +1,3 @@
----
-title: Crypto Trend Analyzer
-emoji: 📈
-colorFrom: blue
-colorTo: indigo
-sdk: docker
-app_port: 8501
-tags:
-- streamlit
-- finance
-- machine-learning
-- predictive-modeling
-- crypto
-pinned: false
-short_description: AI-powered cryptocurrency price forecasting and market sentiment analysis.
----
-
 # 📈 Crypto Trend Analyzer
 
 An interactive web application deployed on Hugging Face Spaces that combines historical market data, machine learning, and natural language processing to analyze and forecast cryptocurrency trends. 
